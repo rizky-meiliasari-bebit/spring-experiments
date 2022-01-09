@@ -29,8 +29,8 @@ jobs:
         with:
           jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
           generate-branches-badge: true
+      - uses: actions/checkout@v2
       - name: Setup github account
-        uses: actions/checkout@v2
         run: |
           git config --local user.email "putri3039@gmail.com"
           git config --local user.name "rizky-meiliasari-bebit"
