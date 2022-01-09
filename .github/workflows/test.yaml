@@ -35,23 +35,6 @@ jobs:
           jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
           generate-branches-badge: true
           generate-summary: true
-      - name: Commit and push the badge (if it changed)
-        uses: EndBug/add-and-commit@v7
-        with:
-          default_author: github_actions
-          message: 'commit badge'
-          add: '*.svg'
-      - name: Commit and push the coverage-summary (if it changed)
-        uses: EndBug/add-and-commit@v7
-        with:
-          default_author: github_actions
-          message: 'commit coverage-summary'
-          add: '*.json'
-      - name: Upload JaCoCo coverage report
-        uses: actions/upload-artifact@v2
-        with:
-          name: jacoco-report
-          path: build/reports/jacoco/
       - name: Comment on PR with coverage percentages
         if: ${{ github.event_name == 'pull_request' }}
         run: |
