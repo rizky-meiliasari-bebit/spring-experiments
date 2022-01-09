@@ -1,48 +1,47 @@
-#name: test
-#
-#on:
-#  pull_request:
-#    paths-ignore:
-#      - '**.md'
-#      - '.github/workflows/release.yaml'
-#
-#jobs:
-#  test:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          token: ${{ secrets.BEBIT_MACHINE_GITHUB_TOKEN }}
-#          fetch-depth: 0
-#          submodules: recursive
-#      - name: Set up JDK 17
-#        uses: actions/setup-java@v2
-#        with:
-#          java-version: 17
-#          distribution: 'zulu'
-#          cache: gradle
-#      - name: test
-#        run: ./gradlew test
-#        env:
-#          GITHUB_ACTOR: rizky-meiliasari-bebit
-#          GITHUB_TOKEN: ${{ secrets.BEBIT_MACHINE_GITHUB_TOKEN }}
-#      - name: Run Test Coverage
-#        run: ./gradlew jacocoTestReport
-#      - name: Generate JaCoCo Badge
-#        id: jacoco
-#        uses: cicirello/jacoco-badge-generator@v2.5.0
-#        with:
-#          jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
-#          generate-branches-badge: true
-#          generate-summary: true
-#      - name: Comment on PR with coverage percentages
-#        if: ${{ github.event_name == 'pull_request' }}
-#        run: |
-#          REPORT=$(<.github/badges/coverage-summary.json)
-#          COVERAGE=$(printf "%.2f%%" $(jq -r '.coverage' <<< "$REPORT"))
-#          BRANCHES=$(printf "%.2f%%" $(jq -r '.branches' <<< "$REPORT"))
-#          NEWLINE=$'\n'
-#          BODY="JaCoCo Test Coverage Summary Statistics${NEWLINE}Coverage = ${COVERAGE}${NEWLINE}Branches = ${BRANCHES}"
-#          gh pr comment ${{github.event.pull_request.number}} -b "${BODY}"
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+name: test
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - '.github/workflows/release.yaml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.BEBIT_MACHINE_GITHUB_TOKEN }}
+          fetch-depth: 0
+          submodules: recursive
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'zulu'
+          cache: gradle
+      - name: test
+        run: ./gradlew test
+        env:
+          GITHUB_ACTOR: rizky-meiliasari-bebit
+          GITHUB_TOKEN: ${{ secrets.BEBIT_MACHINE_GITHUB_TOKEN }}
+      - name: Run Test Coverage
+        run: ./gradlew jacocoTestReport
+      - name: Generate JaCoCo Badge
+        id: jacoco
+        uses: cicirello/jacoco-badge-generator@v2.5.0
+        with:
+          jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
+          generate-summary: true
+      - name: Comment on PR with coverage percentages
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          REPORT=$(<.github/badges/coverage-summary.json)
+          COVERAGE=$(printf "%.2f%%" $(jq -r '.coverage' <<< "$REPORT"))
+          BRANCHES=$(printf "%.2f%%" $(jq -r '.branches' <<< "$REPORT"))
+          NEWLINE=$'\n'
+          BODY="JaCoCo Test Coverage Summary Statistics${NEWLINE}Coverage = ${COVERAGE}${NEWLINE}Branches = ${BRANCHES}"
+          gh pr comment ${{github.event.pull_request.number}} -b "${BODY}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
