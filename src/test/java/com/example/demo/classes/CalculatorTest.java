@@ -38,12 +38,6 @@ public class CalculatorTest {
     Assert.assertEquals(1, result);
   }
 
-  @Test
-  public void testDivide_withZeroDivider() {
-    int result = calculator.divide(5, 0);
-    Assert.assertEquals(0, result);
-  }
-
   @After
   public void clean() {
     calculator = null;
