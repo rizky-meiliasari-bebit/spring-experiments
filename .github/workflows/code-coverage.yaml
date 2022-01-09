@@ -29,15 +29,15 @@ jobs:
         with:
           jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
           generate-branches-badge: true
-      - name: git setting
-        run: |
-#          TODO: change to beBit's user
-          git config --local user.email "putri3039@gmail.com"
-          git config --local user.name "rizky-meiliasari-bebit"
-      - name: Commit files
-        run: |
-          git add .github/badges
-          git commit -m "Update latest code-coverage" -a
-          git pull
-#          TODO: change to master
-          git push origin patch-2:coverage-badge -f
+#      - name: git setting
+#        run: |
+##          TODO: change to beBit's user
+#          git config --local user.email "putri3039@gmail.com"
+#          git config --local user.name "rizky-meiliasari-bebit"
+#      - name: Commit files
+#        run: |
+#          git add .github/badges
+#          git commit -m "Update latest code-coverage" -a
+#          git pull
+##          TODO: change to master
+#          git push origin patch-2:coverage-badge -f
