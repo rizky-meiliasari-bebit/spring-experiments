@@ -1,10 +1,9 @@
 name: code-coverage
 
 on:
-  pull_request:
-    paths-ignore:
-      - '**.md'
-      - '.github/workflows/release.yaml'
+  push:
+    branches:
+      - master
 
 jobs:
   test:
@@ -15,34 +14,3 @@ jobs:
           token: ${{ secrets.BEBIT_MACHINE_GITHUB_TOKEN }}
           fetch-depth: 0
           submodules: recursive
-      - name: Set up JDK 17
-        uses: actions/setup-java@v2
-        with:
-          java-version: 17
-          distribution: 'zulu'
-          cache: gradle
-      - name: test
-        run: ./gradlew test
-        env:
-          GITHUB_ACTOR: bebit-machine
-          GITHUB_TOKEN: ${{ secrets.BEBIT_MACHINE_GITHUB_TOKEN }}
-      - name: Run Test Coverage
-        run: ./gradlew jacocoTestReport
-      - name: Generate JaCoCo Badge
-        id: jacoco
-        uses: cicirello/jacoco-badge-generator@v2.5.0
-        with:
-          jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
-          generate-branches-badge: true
-          generate-summary: true
-      - name: Commit and push badge and coverage-summary (if it changed)
-        uses: EndBug/add-and-commit@v7
-        with:
-          default_author: github_actions
-          message: 'commit badge & coverage-summary'
-          add: '.github/badges'
-      - name: Upload JaCoCo coverage report
-        uses: actions/upload-artifact@v2
-        with:
-          name: jacoco-report
-          path: processor/build/reports/jacoco/

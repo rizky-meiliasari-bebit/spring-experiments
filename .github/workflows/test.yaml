@@ -34,6 +34,14 @@ jobs:
         with:
           jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
           generate-summary: true
+      - name: Commit and push badge and coverage-summary (if it changed)
+        uses: EndBug/add-and-commit@v7
+        with:
+          branch: code-coverage
+          branch_mode: create
+          default_author: github_actions
+          message: 'commit badge & coverage-summary'
+          add: '.github/badges'
       - name: Comment on PR with coverage percentages
         if: ${{ github.event_name == 'pull_request' }}
         run: |
