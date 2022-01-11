@@ -37,15 +37,11 @@ jobs:
           echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
           echo "branch coverage = ${{ steps.jacoco.outputs.branches }}"
 
-      - name: Create code-coverage branch
-        run: |
-          exists=`git show-ref refs/heads/code-coverage`
-          if ! [ -n "$exists" ]; then
-          git branch code-coverage master
-          fi
-
       - name: Commit the badge (if it changed)
         run: |
+          if ! [[ `git show-ref --quiet refs/heads/code-coverage` ]]; then
+          git branch code-coverage master
+          fi
           if [[ `git status --porcelain` ]]; then
             git config --global user.name 'YOUR NAME HERE'
             git config --global user.email 'YOUR-GITHUB-USERID@users.noreply.github.com'
