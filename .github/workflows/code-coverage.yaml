@@ -30,10 +30,8 @@ jobs:
         run: |
           git config --local user.email "putri3039@gmail.com"
           git config --local user.name "rizky-meiliasari-bebit"
-          git checkout -b code-coverage
       - name: Commit files
         run: |
           git add -A
           git commit -m "Update latest code-coverage" -a
-          git checkout patch-2
-          git merge coverage-badge
+          git push origin patch-2
