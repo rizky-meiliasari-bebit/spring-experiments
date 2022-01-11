@@ -18,12 +18,4 @@ public class Calculator {
     return a / b;
   }
 
-  public long factorial(int a) {
-    long result = 1;
-    for (int factor = 2; factor <= a; factor++) {
-      result *= factor;
-    }
-    return result;
-  }
-
 }

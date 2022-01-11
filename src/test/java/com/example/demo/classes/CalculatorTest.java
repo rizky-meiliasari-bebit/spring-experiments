@@ -38,18 +38,6 @@ public class CalculatorTest {
     Assert.assertEquals(1, result);
   }
 
-  @Test
-  public void testFactorial() {
-    long result = calculator.factorial(2);
-    Assert.assertEquals(2, result);
-  }
-
-  @Test
-  public void testFactorial_one() {
-    long result = calculator.factorial(1);
-    Assert.assertEquals(1, result);
-  }
-
   @After
   public void clean() {
     calculator = null;
