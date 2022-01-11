@@ -40,7 +40,7 @@ jobs:
       - name: Commit the badge (if it changed)
         run: |
           if ! [[ `git show-ref --quiet refs/heads/code-coverage` ]]; then
-          git branch code-coverage master
+          git branch code-coverage patch-2
           fi
           if [[ `git status --porcelain` ]]; then
             git config --global user.name 'YOUR NAME HERE'
