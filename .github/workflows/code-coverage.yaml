@@ -17,6 +17,11 @@ jobs:
           java-version: 17
           distribution: 'zulu'
           cache: gradle
+      - name: test
+        run: ./gradlew test
+        env:
+          GITHUB_ACTOR: rizky-meiliasari-bebit
+          GITHUB_TOKEN: ${{ secrets.BEBIT_MACHINE_GITHUB_TOKEN }}
       - name: Run Test Coverage
         run: ./gradlew jacocoTestReport
       - name: Generate JaCoCo Badge
@@ -32,6 +37,9 @@ jobs:
           git config --local user.name "rizky-meiliasari-bebit"
       - name: Commit files
         run: |
-          git add -A
+          git checkout -b code-coverage
+          git add .github/badges
           git commit -m "Update latest code-coverage" -a
-          git push
+          git push origin code-coverage
+          git checkout patch-2
+          git merge code-coverage
