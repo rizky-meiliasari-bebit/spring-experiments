@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Commit files
         run: |
-          git add .github/badges
+          git add -A
           git commit -m "Update latest code-coverage" -a
           git checkout patch-2
           git merge coverage-badge
