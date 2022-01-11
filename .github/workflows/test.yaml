@@ -34,6 +34,7 @@ jobs:
         with:
           jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
           generate-summary: true
+          generate-branches-badge: true
       - name: Commit and push badge and coverage-summary (if it changed)
         uses: EndBug/add-and-commit@v7
         with:
