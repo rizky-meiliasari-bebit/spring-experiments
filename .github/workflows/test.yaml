@@ -38,7 +38,6 @@ jobs:
       - name: Commit and push badge and coverage-summary (if it changed)
         uses: EndBug/add-and-commit@v7
         with:
-          branch: code-coverage
           branch_mode: create
           default_author: github_actions
           message: 'commit badge & coverage-summary'
