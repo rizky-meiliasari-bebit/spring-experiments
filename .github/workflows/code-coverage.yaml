@@ -6,11 +6,13 @@ on:
       - master
 
 jobs:
-  test:
+  merge-branch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: everlytic/branch-merge@1.1.2
         with:
-          token: ${{ secrets.BEBIT_MACHINE_GITHUB_TOKEN }}
-          fetch-depth: 0
-          submodules: recursive
+          github_token: ${{ github.token }}
+          source_ref: code-coverage
+          target_branch: 'master'
+          commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
