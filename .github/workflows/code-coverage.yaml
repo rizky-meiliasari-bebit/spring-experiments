@@ -1,0 +1,16 @@
+name: code-coverage
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.BEBIT_MACHINE_GITHUB_TOKEN }}
+          fetch-depth: 0
+          submodules: recursive
