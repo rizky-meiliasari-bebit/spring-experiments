@@ -36,7 +36,6 @@ jobs:
           git config --local user.name "rizky-meiliasari-bebit"
       - name: Commit files
         run: |
-          git checkout -b code-coverage
           git add .github/badges
           git commit -m "Update latest code-coverage" -a
           git pull origin patch-2
