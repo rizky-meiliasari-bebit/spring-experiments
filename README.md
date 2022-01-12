@@ -1,7 +1,6 @@
-| __JaCoCo Test Coverage__ | ![coverage](.github/badges/jacoco.svg?branch=code-coverage) ![branch coverage](.github/badges/branches.svg?branch=code-coverage) |
-|:-------------------------|:---------------------------------------------------------------------------------------|
+| __JaCoCo Test Coverage__ | ![coverage](https://github.com/rizky-meiliasari-bebit/spring-experiments/blob/code-coverage/.github/badges/branches.svg) ![branch coverage](https://github.com/rizky-meiliasari-bebit/spring-experiments/blob/code-coverage/.github/badges/branches.svg) |
+|:-------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
 
 # Spring Experiments
-- this is a temporary text
